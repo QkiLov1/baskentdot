@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Başkent DOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-info-modal">&times;</span>
+            <h2>Hoş Geldiniz!</h2>
+            <p>Bu platformda, topluluğumuzun yetenekli üyeleri tarafından çekilen harika oyun içi fotoğrafları keşfedebilirsiniz. Siz de kendi oyun içi fotoğrafınızı yükleyerek yarışmamıza katılabilirsiniz. İyi eğlenceler!</p>
+        </div>
+    </div>
+
+    <div id="upload-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-upload-modal">&times;</span>
+            <h2>Yarışmaya Katıl</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="file-input">Fotoğrafınızı Yükleyin (16:9):</label>
+                    <input type="file" id="file-input" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="name-input">İsim:</label>
+                    <input type="text" id="name-input" placeholder="Adınız" required>
+                </div>
+                <div class="form-group">
+                    <label for="surname-input">Soyisim:</label>
+                    <input type="text" id="surname-input" placeholder="Soyadınız" required>
+                </div>
+                <div class="form-group">
+                    <label for="department-input">Bölüm:</label>
+                    <input type="text" id="department-input" placeholder="Bölümünüz" required>
+                </div>
+                <div class="form-group">
+                    <label for="class-input">Sınıf:</label>
+                    <input type="text" id="class-input" placeholder="Sınıfınız" required>
+                </div>
+                <div class="form-group">
+                    <label for="number-input">Öğrenci Numaranız:</label>
+                    <input type="text" id="number-input" placeholder="Öğrenci Numaranız" required>
+                </div>
+                <div class="form-group-checkbox">
+                    <input type="checkbox" id="terms-agree" required>
+                    <label for="terms-agree">
+                        <a href="terms.html" id="modal-terms-link">Kullanıcı sözleşmesini</a> okudum, anladım.
+                    </label>
+                </div>
+                <button type="submit" id="submit-btn">Gönder</button>
+                <div id="upload-status"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="terms-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" id="close-terms-modal">&times;</span>
+            <h2>Katılım Şartları</h2>
+            <p>
+                1. Bu yarışmaya gönderilen tüm fotoğraların özgün olması gerekmektedir.
+                <br><br>
+                2. Gönderdiğiniz fotoğraların en boy oranı 16:9 olmalıdır. Eğer farklı bir en boy oranına sahip fotoğraf eklemek isterseniz, sitemiz içerisindeki fotoğraf kırpma aracını kullanabilirsiniz. (fotoğraf yükleme bölümünde fotoğraf yüklediğinizde otomatik açılacaktır.)
+                <br><br>
+                3. Katılımcılar, gönderdikleri eserlerin yayın haklarını Başkent DOT topluluğuna devretmeyi kabul ederler.
+                <br><br>
+                4. Yarışma kuralları ve ödülleri hakkında değişiklik yapma hakkı saklıdır.
+                <br><br>
+                5. Lütfen topluluk kurallarına saygılı içerikler üretin.
+                <br><br>
+                6. Kullanıcı sözleşmesini <a href="terms.html" style="text-decoration: none;">bu linkten</a> okuyabilirsiniz.
+                <br><br>
+                Lütfen yukarıda verilen şartlar ve koşulları okuyunuz. Yarışmaya katıldığınızda yukarıda bulunan şartları kabul etmiş sayılırsınız!
+                <br><br>
+                
+            </p>
+        </div>
+    </div>
+
+    <div id="crop-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Fotoğrafı Kırp</h2>
+            <p>Lütfen fotoğrafınızın 16:9 oranında kırpın.</p>
+            <div id="crop-container">
+                <img id="image-to-crop" src="">
+            </div>
+            <button id="crop-and-save-btn">Kırp ve Onayla</button>
+        </div>
+    </div>
+    
+    <header>
+        <div class="logo-container">
+            <img src="slice1.png" alt="Site Logosu" class="logo-img">
+        </div>
+        <a id="terms-btn">Şartlar</a>
+        <div class="header-center">
+            <a id="gallery-btn">Galeri</a>
+        </div>
+    </header>
+
+    <div id="center-box">
+        <h1>Hoşgeldin!</h1>
+        <p>
+            Yarışmamıza katılmak için "Yarışmaya Katıl!" butonuna basabilirsiniz.
+            Kazanan yarışmacılarımızı yarışma bitittikten sonra canlı oylama ile seçeceğiz.
+            Yarışmaya katılmadan önce şartlar ve koşulları okuyunuz. İyi Eğlenceler!
+            <br><br>
+            <button id="join-btn">Yarışmaya Katıl!</button>
+            <br><br>
+            <h3>Ödüller:</h3>
+            Oylama sonucu sergileme hakkı kazananlar, 1 altın, 1 gümüş, 1 bronz, 15 mansiyon olacak şekilde dijital ve fiziksel sergimizde yer alacaktır.
+        </p>
+    </div>
+
+    <main id="gallery-container">
+    </main>
+
+    <div id="gallery-modal" class="modal hidden">
+        <div class="gallery-content">
+            <span class="close-btn" id="close-gallery-modal">&times;</span>
+            <h2>Galeri</h2>
+            <div id="gallery-grid">
+                </div>
+        </div>
+    </div>
+
+    <div id="lightbox-modal" class="modal hidden">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
