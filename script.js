@@ -12,6 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.getElementById('gallery-container');
     let currentImageIndex = -1;
 
+    let browserId = null;
+    const fpPromise = FingerprintJS.load();
+
+    fpPromise
+        .then(fp => fp.get())
+        .then(result => {
+            browserId = result.visitorId;
+            console.log("Tarayıcı Kimliği yüklendi:", browserId);
+        })
+        .catch(error => console.error("FingerprintJS yüklenirken hata:", error));
+
     function showRandomImage() {
         if (imageUrls.length === 0) return;
         let randomIndex;
