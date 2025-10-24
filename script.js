@@ -167,16 +167,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const submitBtn = document.getElementById('submit-btn');
         submitBtn.disabled = true;
-        uploadStatus.textContent = 'Yükleniyor...';
+        uploadStatus.textContent = 'Kontrol ediliyor...';
         try {
 
             const ipResponse = await fetch('https://api.ipify.org?format=json');
             const ipData = await ipResponse.json();
             const ipAddress = ipData.ip;
 
-            const fp = await FingerprintJS.load();
-            const result = await fp.get();
-            const browserId = result.visitorId;
+            if (!browserId) {
+                console.log("Tarayıcı kimliği bekleniyor...");
+                const fp = await fpPromise;
+                const result = await fp.get();
+                browserId = result.visitorId;
+                console.log("Tarayıcı kimliği şimdi yüklendi:", browserId);
+            }
 
             const ipQuery = await db.collection('submissions').where('ipAddress', '==', ipAddress).get();
             if (!ipQuery.empty) {
