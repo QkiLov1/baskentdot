@@ -12,17 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.getElementById('gallery-container');
     let currentImageIndex = -1;
 
-    let browserId = null;
-    const fpPromise = FingerprintJS.load();
-
-    fpPromise
-        .then(fp => fp.get())
-        .then(result => {
-            browserId = result.visitorId;
-            console.log("Tarayıcı Kimliği yüklendi:", browserId);
-        })
-        .catch(error => console.error("FingerprintJS yüklenirken hata:", error));
-
     function showRandomImage() {
         if (imageUrls.length === 0) return;
         let randomIndex;
@@ -178,29 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const submitBtn = document.getElementById('submit-btn');
         submitBtn.disabled = true;
-        uploadStatus.textContent = 'Kontrol ediliyor...';
+        uploadStatus.textContent = 'Yükleniyor...';
         try {
 
             const ipResponse = await fetch('https://api.ipify.org?format=json');
             const ipData = await ipResponse.json();
             const ipAddress = ipData.ip;
 
-            if (!browserId) {
-                console.log("Tarayıcı kimliği bekleniyor...");
-                const fp = await fpPromise;
-                const result = await fp.get();
-                browserId = result.visitorId;
-                console.log("Tarayıcı kimliği şimdi yüklendi:", browserId);
-            }
-
             const ipQuery = await db.collection('submissions').where('ipAddress', '==', ipAddress).get();
             if (!ipQuery.empty) {
                 throw new Error('Bu IP adresi ile daha önce katılım yapılmış.');
-            }
-
-            const browserQuery = await db.collection('submissions').where('browserId', '==', browserId).get();
-            if (!browserQuery.empty) {
-                throw new Error('Bu tarayıcı ile daha önce katılım yapılmış.');
             }
 
             const timestamp = Date.now();
@@ -220,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 termsAccepted: termsAccepted,
                 ipAddress: ipAddress,
-                browserId: browserId
             });
 
             uploadStatus.textContent = 'Başarıyla yüklendi!';
