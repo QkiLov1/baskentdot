@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     const localImageFiles = [
-        "1.jpeg",
-        "2.jpeg"
+        "1.jpg",
+        "2.jpg",
+        "3.jpg",
+        "4.jpg",
+        "5.jpg",
+        "6.jpg"
     ];
     const imageUrls = localImageFiles.map(file => `images/${file}`);
     const galleryContainer = document.getElementById('gallery-container');
