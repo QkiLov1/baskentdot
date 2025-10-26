@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let originalFileName = '';
 
     closeInfoModalBtn.addEventListener('click', () => infoModal.classList.add('hidden'));
-    joinBtn.addEventListener('click', () => uploadModal.classList.remove('hidden'));
     closeUploadModalBtn.addEventListener('click', () => uploadModal.classList.add('hidden'));
     
     termsBtn.addEventListener('click', (event) => {
