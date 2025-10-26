@@ -79,9 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let cropper;
     let processedFileBlob = null;
     let originalFileName = '';
-
-    closeInfoModalBtn.addEventListener('click', () => infoModal.classList.add('hidden'));
-    closeUploadModalBtn.addEventListener('click', () => uploadModal.classList.add('hidden'));
     
     termsBtn.addEventListener('click', (event) => {
         termsModal.classList.remove('hidden');
