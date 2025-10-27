@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oylama Sitesi</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://openfpcdn.io/fingerprintjs/v3/iife.min.js"></script>
+</head>
+<body>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-info-modal">&times;</span>
+            <h2>Hoş Geldiniz!</h2>
+            <p>
+                Oylama yapmak için istediğiniz görselin köşesinde bulunan "Oyla" tuşunu kullanabilirsiniz. Oylama sonucu kazanan yarışmacılarımız aldıkları oylara göre belirlenecektirç. Unutma, sadece tek oy hakkın var!
+            </p>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <img src="../slice1.png" alt="Site Logosu" class="logo-img">
+        </div>
+        <a href="../index.html" class="nav-button">Ana Sayfa</a>
+    </header>
+
+    <main id="gallery-container">
+        <div id="vote-grid">
+            </div>
+    </main>
+
+    <div id="lightbox-modal" class="modal hidden">
+        <span class="close-btn" id="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
