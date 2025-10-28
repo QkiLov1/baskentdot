@@ -8,7 +8,7 @@
 body, html {
     height: 100%;
     width: 100%;
-    background-color: #f0f0f0; 
+    background-color: #333333; 
     color: #333;
 }
 
@@ -67,7 +67,7 @@ header {
 .winners-container h1 {
     font-size: 2.5rem;
     margin-bottom: 40px;
-    color: #e53935;
+    color: white;
     text-align: center;
 }
 
@@ -139,7 +139,7 @@ header {
     box-shadow: 0 10px 25px rgba(229, 57, 53, 0.4);
 }
 #first-place h2 {
-    color: #e53935;
+    color: darkgoldenrod;
     font-size: 2rem;
 }
 
@@ -148,7 +148,7 @@ header {
     margin-right: -20px;
 }
 #second-place h2 {
-    color: #757575;
+    color: silver;
 }
 
 #third-place {
@@ -156,7 +156,7 @@ header {
     margin-left: -20px;
 }
 #third-place h2 {
-    color: #a1887f;
+    color: #CD7F32;
 }
 
 .gallery-section {
@@ -170,7 +170,7 @@ header {
 
 .gallery-section h2 {
     font-size: 2rem;
-    color: #333;
+    color: white;
     margin-bottom: 30px;
 }
 
